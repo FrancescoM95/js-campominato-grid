@@ -16,9 +16,10 @@ const totalCells = rows * cols;
 
 //Funzione per creare una cella
 
-const createCell = () => {
+const createCell = cellNumber => {
     const newCell = document.createElement('div');
     newCell.classList.add('cell');
+    newCell.innerText = cellNumber;
     return newCell;
 }
 
@@ -29,7 +30,7 @@ play.addEventListener('click', function () {
     grid.classList.add('grid');
     container.appendChild(grid);
     for (let i = 1; i <= totalCells; i++) {
-        const cell = createCell();
+        const cell = createCell(i);
         grid.appendChild(cell);
     }
 })
