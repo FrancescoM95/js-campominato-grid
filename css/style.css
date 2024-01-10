@@ -46,4 +46,9 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+
+.cell.clicked {
+    background-color: lightskyblue;
 }
