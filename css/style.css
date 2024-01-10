@@ -1,0 +1,48 @@
+/** GENERICS */
+
+body {
+    background-color: #7FFFD4;
+}
+
+footer {
+    height: 50px;
+    display: flex;
+    align-items: center;
+
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+h1 {
+    display: inline;
+    font-weight: 700;
+    margin: 0;
+}
+
+button {
+    width: 100px;
+    border-radius: 5px;
+}
+
+/** LAYOUT */
+
+.grid {
+    width: 600px;
+    height: 600px;
+    margin: 20px auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.cell {
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
