@@ -3,45 +3,78 @@ console.log('JS OK');
 // Recupero elementi dalla pagina
 
 const play = document.getElementById('play');
+const refresh = document.getElementById('refresh');
 const container = document.getElementById('container');
-
-// Dati di partenza
-
-const rows = 10;
-const cols = 10;
-const totalCells = rows * cols;
+const form = document.getElementById('form');
+const level = document.getElementById('level');
 
 
 //* FUNZIONI
 
-//Funzione per creare una cella
-
-const createCell = cellNumber => {
+/**
+ * Funzione per creare una cella in 
+ * @param {number} cellNumber Numero che verrà inserito come testo nella cella che corrisponde al numero progressivo del contatore
+ * @param {number} size Valore che rappresenta la grandezza della griglia scelta dall'utente e di conseguenza determina il numero totale e la dimensione delle celle
+ * @returns newCell Nuova cella creata
+ */
+const createCell = (cellNumber, size) => {
     const newCell = document.createElement('div');
-    newCell.classList.add('cell');
     newCell.innerText = cellNumber;
+    newCell.classList.add('cell');
+    if (size === 1) {
+        newCell.classList.add('big');
+    } else if (size === 2) {
+        newCell.classList.add('mid');
+    } else if (size === 3) {
+        newCell.classList.add('small');
+    }
     return newCell;
 }
 
-
 let isGrid = false
 
-// Al click sul bottone viene creata la griglia con le 100 celle
-play.addEventListener('click', () => {
+// All'invio del form sul viene creata la griglia con un numero di celle variabile in base alla scelta dell'utente
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Dati di partenza
+    const selectedLevel = parseInt(level.value);
+    let rows;
+    let cols;
+
+    if (selectedLevel === 1) {
+        rows = 10;
+        cols = 10;
+    } else if (selectedLevel === 2) {
+        rows = 9;
+        cols = 9;
+    } else if (selectedLevel === 3) {
+        rows = 7;
+        cols = 7;
+    }
+
+    const totalCells = rows * cols;
+
     if (!isGrid) {
         const grid = document.createElement('div');
         grid.classList.add('grid');
         container.appendChild(grid);
+
         for (let i = 1; i <= totalCells; i++) {
-            const cell = createCell(i);
+            const cell = createCell(i, selectedLevel);
             grid.appendChild(cell);
 
-            //Al click la cella si colora d'azzurro e stampiamo il numero corrispondente in console
+            // Al click, la cella si colora d'azzurro e stampiamo il numero corrispondente in console
             cell.addEventListener('click', () => {
                 cell.classList.toggle('clicked');
                 console.log('Il numero della cella è:', i);
-            })
+            });
         }
         isGrid = true;
     }
+});
+
+// Bottone refresh pagina
+refresh.addEventListener('click', () => {
+    location.reload();
 })

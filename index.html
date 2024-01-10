@@ -35,17 +35,23 @@
                     <h1>Campo Minato</h1>
                 </div>
                 <div class="mx-2">
-                    <button id="play">Play</button>
+                    <form id="form">
+                        <label for="level">Grandezza campo minato:</label>
+                        <select name="level" id="level">
+                            <option value="1">Grande</option>
+                            <option value="2">Medio</option>
+                            <option value="3">Piccolo</option>
+                        </select>
+                        <button type="submit" id="play">Play</button>
+                        <button type="button" id="refresh"><i class="fas fa-arrows-rotate fa-lg"></i></button>
+                    </form>
                 </div>
             </div>
         </nav>
     </header>
 
     <main>
-        <div class="container" id="container">
-
-        </div>
-
+        <div class="container" id="container"></div>
     </main>
 
     <footer class="bg-body-tertiary">
@@ -54,7 +60,6 @@
                 Made with &hearts; by <a href="#">Boolean</a>
             </p>
         </div>
-
     </footer>
 </body>
 

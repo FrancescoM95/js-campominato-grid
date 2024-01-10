@@ -21,11 +21,6 @@ h1 {
     margin: 0;
 }
 
-button {
-    width: 100px;
-    border-radius: 5px;
-}
-
 /** LAYOUT */
 
 .grid {
@@ -40,8 +35,6 @@ button {
 }
 
 .cell {
-    width: calc(100% / 10);
-    height: calc(100% / 10);
     border: 1px solid black;
     display: flex;
     justify-content: center;
@@ -49,6 +42,42 @@ button {
     cursor: pointer;
 }
 
+.cell.big {
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+}
+
+.cell.mid {
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+
+.cell.small {
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
+
 .cell.clicked {
     background-color: lightskyblue;
+}
+
+#level {
+    height: 30px;
+    width: 100px;
+    margin-right: 10px;
+    padding: 0 5px;
+    border: 2px solid black;
+    border-radius: 5px;
+    transform: translateY(4%);
+    cursor: pointer;
+}
+
+#play {
+    width: 100px;
+}
+
+#play,
+#refresh {
+    border-radius: 5px;
+    border: 2px solid black;
 }
