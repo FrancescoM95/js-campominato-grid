@@ -3,8 +3,7 @@ console.log('JS OK');
 // Recupero elementi dalla pagina
 
 const play = document.getElementById('play');
-const refresh = document.getElementById('refresh');
-const container = document.getElementById('container');
+const grid = document.getElementById('grid');
 const form = document.getElementById('form');
 const level = document.getElementById('level');
 
@@ -12,7 +11,7 @@ const level = document.getElementById('level');
 //* FUNZIONI
 
 /**
- * Funzione per creare una cella in 
+ * Funzione per creare una cella
  * @param {number} cellNumber Numero che verrà inserito come testo nella cella che corrisponde al numero progressivo del contatore
  * @param {number} size Valore che rappresenta la grandezza della griglia scelta dall'utente e di conseguenza determina il numero totale e la dimensione delle celle
  * @returns newCell Nuova cella creata
@@ -29,13 +28,14 @@ const createCell = (cellNumber, size) => {
         newCell.classList.add('small');
     }
     return newCell;
-}
-
-let isGrid = false
+};
 
 // All'invio del form sul viene creata la griglia con un numero di celle variabile in base alla scelta dell'utente
 form.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    grid.innerText = '';
+    play.innerText = 'Ricomincia';
 
     // Dati di partenza
     const selectedLevel = parseInt(level.value);
@@ -55,26 +55,16 @@ form.addEventListener('submit', (e) => {
 
     const totalCells = rows * cols;
 
-    if (!isGrid) {
-        const grid = document.createElement('div');
-        grid.classList.add('grid');
-        container.appendChild(grid);
+    for (let i = 1; i <= totalCells; i++) {
+        const cell = createCell(i, selectedLevel);
+        grid.appendChild(cell);
 
-        for (let i = 1; i <= totalCells; i++) {
-            const cell = createCell(i, selectedLevel);
-            grid.appendChild(cell);
-
-            // Al click, la cella si colora d'azzurro e stampiamo il numero corrispondente in console
-            cell.addEventListener('click', () => {
-                cell.classList.toggle('clicked');
-                console.log('Il numero della cella è:', i);
-            });
-        }
-        isGrid = true;
+        // Al click, la cella si colora d'azzurro e stampiamo il numero corrispondente in console
+        cell.addEventListener('click', () => {
+            if (cell.classList.contains('clicked')) return;
+            cell.classList.add('clicked');
+            console.log('Il numero della cella è:', i);
+        });
     }
-});
 
-// Bottone refresh pagina
-refresh.addEventListener('click', () => {
-    location.reload();
-})
+});
